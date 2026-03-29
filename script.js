@@ -1,6 +1,6 @@
 let tasks = [];
 
-// LOAD
+// LOAD DATA
 window.onload = function () {
     let data = localStorage.getItem("tasks");
 
@@ -10,17 +10,22 @@ window.onload = function () {
     }
 };
 
-// SAVE
+// SAVE DATA
 function saveData() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// ADD
+// ADD TASK
 function addTask() {
 
     let title = document.getElementById("title").value;
     let deadline = document.getElementById("deadline").value;
     let priority = document.getElementById("priority").value;
+
+    if (!title || !deadline) {
+        alert("Please fill all fields!");
+        return;
+    }
 
     let task = {
         title,
@@ -51,8 +56,8 @@ function toggleComplete(index) {
     renderTable();
 }
 
-// RENDER
-function renderTable() {
+// RENDER TABLE
+function renderTable(data = tasks) {
 
     let table = document.getElementById("table");
 
@@ -66,7 +71,7 @@ function renderTable() {
         </tr>
     `;
 
-    tasks.forEach((t, i) => {
+    data.forEach((t, i) => {
         table.innerHTML += `
             <tr>
                 <td>${t.title}</td>
@@ -85,7 +90,22 @@ function renderTable() {
     });
 }
 
-// SMART SUGGEST (ignores completed)
+// FILTERS
+function showAll() {
+    renderTable(tasks);
+}
+
+function showCompleted() {
+    let filtered = tasks.filter(t => t.completed);
+    renderTable(filtered);
+}
+
+function showPending() {
+    let filtered = tasks.filter(t => !t.completed);
+    renderTable(filtered);
+}
+
+// SMART SUGGEST
 function suggestTask() {
 
     let best = null;
@@ -113,6 +133,7 @@ function suggestTask() {
     }
 }
 
+// PRIORITY VALUE
 function getPriorityValue(p) {
     if (p.toLowerCase() === "high") return 1;
     if (p.toLowerCase() === "medium") return 2;
