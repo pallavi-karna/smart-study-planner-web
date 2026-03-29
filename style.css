@@ -1,18 +1,26 @@
 body {
-    font-family: Arial;
-    background: #f4f6f8;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
     text-align: center;
+    color: white;
 }
 
 h1 {
-    color: #333;
+    margin-top: 20px;
 }
 
 .form {
-    margin: 20px;
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    color: black;
+    width: 60%;
+    border-radius: 10px;
 }
 
-input, select, button {
+input, select {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
@@ -20,29 +28,51 @@ input, select, button {
 }
 
 button {
-    background: #007bff;
-    color: white;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
     border: none;
     cursor: pointer;
+    background: #667eea;
+    color: white;
 }
 
 button:hover {
-    background: #0056b3;
+    background: #5a67d8;
 }
 
 table {
-    margin: auto;
+    width: 90%;
+    margin: 20px auto;
     border-collapse: collapse;
-    width: 80%;
     background: white;
+    color: black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: #667eea;
+    color: white;
 }
 
 td, th {
     padding: 12px;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
-th {
-    background: #007bff;
-    color: white;
+/* Priority colors */
+.high {
+    color: red;
+    font-weight: bold;
+}
+
+.medium {
+    color: orange;
+    font-weight: bold;
+}
+
+.low {
+    color: green;
+    font-weight: bold;
 }

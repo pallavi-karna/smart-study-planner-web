@@ -72,11 +72,14 @@ function renderTable(data = tasks) {
     `;
 
     data.forEach((t, i) => {
+
+        let priorityClass = t.priority.toLowerCase();
+
         table.innerHTML += `
             <tr>
                 <td>${t.title}</td>
                 <td>${t.deadline}</td>
-                <td>${t.priority}</td>
+                <td class="${priorityClass}">${t.priority}</td>
                 <td>
                     <input type="checkbox" 
                     ${t.completed ? "checked" : ""} 
@@ -138,4 +141,14 @@ function getPriorityValue(p) {
     if (p.toLowerCase() === "high") return 1;
     if (p.toLowerCase() === "medium") return 2;
     return 3;
+}
+function searchTask() {
+
+    let keyword = document.getElementById("search").value.toLowerCase();
+
+    let filtered = tasks.filter(t =>
+        t.title.toLowerCase().includes(keyword)
+    );
+
+    renderTable(filtered);
 }
