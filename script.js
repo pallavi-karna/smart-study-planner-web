@@ -56,7 +56,6 @@ function toggleComplete(index) {
     renderTable();
 }
 
-// RENDER TABLE
 function renderTable(data = tasks) {
 
     let table = document.getElementById("table");
@@ -86,6 +85,7 @@ function renderTable(data = tasks) {
                     onclick="toggleComplete(${i})">
                 </td>
                 <td>
+                    <button onclick="editTask(${i})">Edit</button>
                     <button onclick="deleteTask(${i})">Delete</button>
                 </td>
             </tr>
@@ -151,4 +151,24 @@ function searchTask() {
     );
 
     renderTable(filtered);
+}
+function editTask(index) {
+
+    let t = tasks[index];
+
+    let newTitle = prompt("Edit title:", t.title);
+    let newDeadline = prompt("Edit deadline (YYYY-MM-DD):", t.deadline);
+    let newPriority = prompt("Edit priority (High/Medium/Low):", t.priority);
+
+    if (newTitle && newDeadline && newPriority) {
+        tasks[index] = {
+            ...t,
+            title: newTitle,
+            deadline: newDeadline,
+            priority: newPriority
+        };
+
+        saveData();
+        renderTable();
+    }
 }
