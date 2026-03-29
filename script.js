@@ -74,10 +74,20 @@ function renderTable(data = tasks) {
 
         let priorityClass = t.priority.toLowerCase();
 
+        // 🔥 Deadline logic (FIXED)
+        let days = (new Date(t.deadline) - new Date()) / (1000 * 60 * 60 * 24);
+
+        let warning = "";
+        if (days < 0) {
+            warning = " 🔴 Overdue";
+        } else if (days <= 2) {
+            warning = " ⚠️ Due Soon";
+        }
+
         table.innerHTML += `
             <tr>
                 <td>${t.title}</td>
-                <td>${t.deadline}</td>
+                <td>${t.deadline} ${warning}</td>
                 <td class="${priorityClass}">${t.priority}</td>
                 <td>
                     <input type="checkbox" 
@@ -118,7 +128,7 @@ function suggestTask() {
 
         if (t.completed) continue;
 
-        let days = (new Date(t.deadline) - new Date()) / (1000 * 60 * 60 * 24);
+        let days = Math.floor((new Date(t.deadline) - new Date()) / (1000 * 60 * 60 * 24));
         let priority = getPriorityValue(t.priority);
 
         let score = priority * 10 + days;
