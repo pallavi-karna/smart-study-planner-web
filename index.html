@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h2>Smart Study Planner</h2>
+
+<input id="title" placeholder="Task Title">
+<input id="deadline" placeholder="YYYY-MM-DD">
+<input id="priority" placeholder="Priority (High/Medium/Low)">
+
+<br><br>
+
+<button onclick="addTask()">Add Task</button>
+<button onclick="suggestTask()">Suggest Task</button>
+
+<br><br>
+
+<table id="table">
+    <tr>
+        <th>Title</th>
+        <th>Deadline</th>
+        <th>Priority</th>
+        <th>Action</th>
+    </tr>
+</table>
+
+<script src="script.js"></script>
+
+</body>
+</html>
